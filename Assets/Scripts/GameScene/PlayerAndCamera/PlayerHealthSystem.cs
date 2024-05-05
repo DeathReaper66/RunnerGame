@@ -19,33 +19,35 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" || collision.tag == "EnemyBullet")
             StartCoroutine(TakeDamage());
     }
 
     private IEnumerator TakeDamage()
     {
+        Physics2D.IgnoreLayerCollision(6, 7, true);
+        Physics2D.IgnoreLayerCollision(6, 9, true);
+
         _healthValue -= 1f;
         _currentHealthImage.fillAmount = _healthValue / 3f;
 
-        if (_healthValue > 0)
-        {
-            Physics2D.IgnoreLayerCollision(6, 7, true);
-
-            for (int i = 0; i < 3; i++)
-            {
-                yield return new WaitForSeconds(0.2f);
-                _spriteRenderer.color = new Color(255, 0, 0, 255);
-                yield return new WaitForSeconds(0.2f);
-                _spriteRenderer.color = new Color(0, 255, 157, 255);
-            }
-
-            Physics2D.IgnoreLayerCollision(6, 7, false);
-        }
-        else
+        if (_healthValue <= 0)
         {
             PlayerMovementWithSwipes.Instance.Speed = 0f;
             _deadMenu.SetActive(true);
         }
+
+
+        for (int i = 0; i < 3; i++)
+        {
+            yield return new WaitForSeconds(0.2f);
+            _spriteRenderer.color = new Color(255, 0, 0, 255);
+            yield return new WaitForSeconds(0.2f);
+            _spriteRenderer.color = new Color(0, 255, 157, 255);
+        }
+
+        Physics2D.IgnoreLayerCollision(6, 9, false);
+        Physics2D.IgnoreLayerCollision(6, 7, false);
+
     }
 }

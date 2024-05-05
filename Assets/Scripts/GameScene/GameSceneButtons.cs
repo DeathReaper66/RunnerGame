@@ -18,8 +18,15 @@ public class GameSceneButtons : MonoBehaviour
         PlayerMovementWithSwipes.Instance.Speed = 1f;
     }
 
+    public void Restart()
+    {
+        _sleepPanel.SetActive(true);
+        SleepPanelInGameScene.SceneIndex = 1;
+    }
+
     public void GoToMainMenuButton()
     {
         _sleepPanel.SetActive(true);
+        SleepPanelInGameScene.SceneIndex = 0;
     }
 }

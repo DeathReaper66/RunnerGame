@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovementWithSwipes : MonoBehaviour
 {
     public static PlayerMovementWithSwipes Instance { get; private set; }
     [SerializeField] public float Speed;
+    [NonSerialized] public float SpeedScale;
     [SerializeField] private float _maxX;
+    [SerializeField] private GameObject _bullet;
 
     private float _moveCooldown = 0.3f;
     private float _moveCooldownTimer = 0f;
@@ -13,6 +16,7 @@ public class PlayerMovementWithSwipes : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        SpeedScale = Speed;
         _rb = GetComponent<Rigidbody2D>();
     }
 

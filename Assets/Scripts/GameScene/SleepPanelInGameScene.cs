@@ -3,8 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class SleepPanelInGameScene : MonoBehaviour
 {
-    public void ToMainMenuScene()
+    [SerializeField] public static int SceneIndex;
+    public void ToMainMenuOrRestart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneIndex);
     }
 }
