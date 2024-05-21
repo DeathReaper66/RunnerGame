@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 
 public class GameSceneButtons : MonoBehaviour
 {
@@ -10,12 +9,14 @@ public class GameSceneButtons : MonoBehaviour
     {
         _pauseMenu.SetActive(true);
         PlayerMovementWithSwipes.Instance.Speed = 0f;
+        Score.IsPaused = true;
     }
 
     public void ClosePauseMenuButton()
     {
         _pauseMenu.GetComponent<Animator>().SetTrigger("Disable");
         PlayerMovementWithSwipes.Instance.Speed = 1f;
+        Score.IsPaused = false;
     }
 
     public void Restart()

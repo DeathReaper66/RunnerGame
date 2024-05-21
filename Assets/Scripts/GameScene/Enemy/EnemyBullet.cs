@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float speed = PlayerMovementWithSwipes.Instance.Speed * PlayerMovementWithSwipes.Instance.SpeedScale * Time.fixedDeltaTime;
+        float speed = PlayerMovementWithSwipes.Instance.Speed * PlayerMovementWithSwipes.Instance.SpeedScale * Time.fixedDeltaTime * 5f;
         transform.Translate(0f, -speed, 0f);
 
         _lifeTimer += Time.fixedDeltaTime;

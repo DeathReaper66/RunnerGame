@@ -1,2 +1,0 @@
-# RunnerGame
- For Anna
